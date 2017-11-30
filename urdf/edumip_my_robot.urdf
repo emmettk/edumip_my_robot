@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name = "EduMIP">
+ <xacro:property name="wheel_sep" value="0.070" />
+ <xacro:property name="wheel_radius" value="0.034" />
+ <xacro:property name="wheel_width" value="0.010" />
+ <xacro:property name="body_height" value="0.1" />
+ <xacro:property name="body_width" value="0.050" />
+ <xacro:property name="body_length" value="0.035" />
+
+ <material name="body">
+  <color rgba="0 0 0.8 1"/>
+ </material>
+
+ <material name="wheel">
+  <color rgba="1 1 1 1"/>
+ </material>
+
+ <link name="edumip_body">
+  <visual>
+   <origin xyz="0 0 0"/>
+   <geometry>
+    <box size="${body_length} ${body_width} ${body_height}"/>
+   </geometry>
+   <material name="body"/>
+  </visual>
+ </link>
+
+ <link name="wheelL">
+  <visual>
+   <origin rpy="1.57075 0 0" xyz="0 ${-wheel_width} 0"/>
+   <material name="wheel"/>
+   <geometry>
+    <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+   </geometry>
+  </visual>
+ </link>
+
+  <link name="wheelR">
+  <visual>
+   <origin rpy="1.57075 0 0" xyz="0 ${wheel_width} 0"/>
+   <material name="wheel"/>
+   <geometry>
+    <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+   </geometry>
+  </visual>
+ </link>
+
+
+<joint name="wheelL_joint" type="fixed">
+ <parent link="edumip_body"/>
+ <child link="wheelL"/>
+ <origin rpy="0 0 0" xyz="0 ${-body_width/2} ${-body_height/2}"/>
+</joint>
+
+<joint name="wheelR_joint" type="fixed">
+ <parent link="edumip_body"/>
+ <child link="wheelR"/>
+ <origin rpy="0 0 0" xyz="0 ${body_width/2} ${-body_height/2}"/>
+</joint>
+
+
+</robot>
