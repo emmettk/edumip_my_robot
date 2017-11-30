@@ -46,15 +46,17 @@
  </link>
 
 
-<joint name="wheelL_joint" type="fixed">
+<joint name="wheelL_joint" type="continuous">
  <parent link="edumip_body"/>
  <child link="wheelL"/>
+ <axis xyz="0 1 0"/>
  <origin rpy="0 0 0" xyz="0 ${-body_width/2} ${-body_height/2}"/>
 </joint>
 
-<joint name="wheelR_joint" type="fixed">
+<joint name="wheelR_joint" type="continuous">
  <parent link="edumip_body"/>
  <child link="wheelR"/>
+ <axis xyz="0 1 0"/>
  <origin rpy="0 0 0" xyz="0 ${body_width/2} ${-body_height/2}"/>
 </joint>
 
