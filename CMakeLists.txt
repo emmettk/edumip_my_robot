@@ -11,6 +11,13 @@ find_package(catkin REQUIRED COMPONENTS
   joy_twist
   roscpp
   urdf
+  edumip_msgs
+  xacro
+  geometry_msgs
+  std_msgs
+  sensor_msgs
+  rospy
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -105,7 +112,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES edumip_my_robot
-#  CATKIN_DEPENDS joy_twist roscpp urdf
+ CATKIN_DEPENDS joy_twist roscpp urdf edumip_msgs xacro std_msgs geometry_msgs sensor_msgs rospy tf
 #  DEPENDS system_lib
 )
 
@@ -197,3 +204,6 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(edumip_my_robot_publisher src/edumip_my_robot_publisher.cpp)
+target_link_libraries(edumip_my_robot_publisher ${catkin_LIBRARIES})

@@ -5,7 +5,7 @@
   <!-- gui=true: joint state publisher put up little sliders to modify lines -->
   <arg name="gui" default="true" />
 
-<!--CURRENTLY STILL USING URDF_TUTORIAL CONFIG-->
+<!-- my rviz config -->
   <arg name="rvizconfig" default="$(find edumip_my_robot)/rviz/edumip_my_robot.rviz" />
 
   <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
@@ -14,5 +14,21 @@
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+<!-- joy node -->
+  <node respawn="true" pkg="joy" type="joy_node" name="joy_edumip_node">
+  <param name="dev" type="string" value="/dev/input/js1" />
+  </node>
+
+<!-- joy twist node -->
+  <param name="axis_linear" value="1" type="int"/>
+  <param name="axis_angular" value="0" type="int"/>
+  <param name="scale_linear" value="2" type="double"/>
+  <param name="scale_angular" value="2" type="double"/>
+  <node pkg="joy_twist" type="joy_twist" name="joy_twist"/>
+
+<!-- edumip_my_robot_publisher node -->
+<node name="edumip_my_robot_pub" pkg="edumip_my_robot" type="edumip_my_robot_publisher" />
+ 
 
 </launch>
