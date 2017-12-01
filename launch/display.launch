@@ -7,13 +7,15 @@
 
 <!-- my rviz config -->
   <arg name="rvizconfig" default="$(find edumip_my_robot)/rviz/edumip_my_robot.rviz" />
-
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find edumip_my_robot)/rviz/edumip_my_robot.rviz --fixed-frame world" required="true" />
+  <!--node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" -->
+  
   <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
   <param name="use_gui" value="$(arg gui)"/>
 
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
 
 <!-- joy node -->
   <node respawn="true" pkg="joy" type="joy_node" name="joy_edumip_node">
