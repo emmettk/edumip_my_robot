@@ -50,7 +50,7 @@ void EduMipStateNode::EduMipState_Callback(const edumip_msgs::EduMipState::Const
   joint_state.position[0]  = msg->wheel_angle_L;
   joint_state.position[1]  = msg->wheel_angle_R;
 
-  ROS_INFO("We made it into the callback, %f", msg->wheel_angle_L);
+  //ROS_INFO("We made it into the callback, %f", msg->wheel_angle_L);
 
   //publish the joint state and transform
   pub_.publish(joint_state);
